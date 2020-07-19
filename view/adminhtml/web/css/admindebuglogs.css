@@ -1,0 +1,17 @@
+p.log-content {
+    overflow-y: scroll;
+    max-height: 500px;
+    background-color: black;
+    color: green;
+    padding: 10px;
+    border: solid #333333;
+}
+h2.log-header {
+    border-color: #b4b4b4 !important;
+    max-width: 150px;
+    border: solid;
+    padding: 10px;
+    margin-bottom: 0;
+    border-top-right-radius: 18px;
+    border-top-left-radius: 18px;
+}

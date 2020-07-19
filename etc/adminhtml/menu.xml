@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="CHK_AdminDebugLogs::index" title="Debug logs" translate="title" module="CHK_AdminDebugLogs" sortOrder="35" parent="Magento_Backend::system_tools" action="admindebuglogs/index" resource="CHK_AdminDebugLogs::index"/>
+    </menu>
+</config>

@@ -1,0 +1,13 @@
+<?php
+$logDirectory = $block->getLogPath();
+$filesArray = scandir($logDirectory);
+foreach ($filesArray as $file) {
+    $filePath = $logDirectory . '/' . $file;
+    if (str_replace('.', '', $file) !== '' && !is_dir($filePath)) {
+        ?>
+        <h2 class="log-header"><?= $file ?></h2>
+        <p class="log-content"><?= $block->getFileContent($filePath) ?></p>
+    <?php
+    }
+}
+?>
