@@ -5,7 +5,7 @@
             <resource id="Magento_Backend::admin">
                 <resource id="Magento_Backend::system">
                     <resource id="Magento_Backend::tools">
-                        <resource id="CHK_AdminDebugLogs::index" title="Admin Debug logs" translate="title" sortOrder="35" />
+                        <resource id="CHK_AdminDebugLogs::index" title="Magento Debug Logs" translate="title" sortOrder="35" />
                     </resource>
                 </resource>
             </resource>
