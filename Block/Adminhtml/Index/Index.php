@@ -46,7 +46,7 @@ class Index extends Container
     }
 
     /**
-     * @return string`
+     * @return string
      */
     public function getLogPath()
     {
@@ -59,7 +59,9 @@ class Index extends Container
     }
 
     /**
-     * @param $path
+     * get File content
+     *
+     * @param $filePath
      * @return string|void
      */
     public function getFileContent($filePath)
@@ -77,6 +79,8 @@ class Index extends Container
     }
 
     /**
+     * Get the last specified lines of the file
+     *
      * @param $filename
      * @param int $num
      * @param false $reverse
@@ -90,7 +94,7 @@ class Index extends Container
         $lines = new LimitIterator($file, $last_line - $num, $last_line);
         $arr = iterator_to_array($lines);
         if($reverse) $arr = array_reverse($arr);
-        return implode('',$arr);
+        return implode('<br/>',$arr);
     }
 
     /**
@@ -99,7 +103,7 @@ class Index extends Container
      * @param $filePath
      * @return int
      */
-    public function getFileSizeInKb($filePath): int
+    public function getFileSizeInKb($filePath)
     {
         $size = filesize($filePath);
         if($size < 1024) {
