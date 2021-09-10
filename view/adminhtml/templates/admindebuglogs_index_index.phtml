@@ -2,12 +2,9 @@
 $logDirectory = $block->getLogPath();
 $filesArray = scandir($logDirectory);
 foreach ($filesArray as $file) {
-    $filePath = $logDirectory . '/' . $file;
-    if (str_replace('.', '', $file) !== '' && !is_dir($filePath)) {
-        ?>
+    if (pathinfo($file, PATHINFO_EXTENSION) == 'log') {
+        $filePath = $logDirectory . '/' . $file; ?>
         <h2 class="log-header"><?= $file ?></h2>
         <p class="log-content"><?= $block->getFileContent($filePath) ?></p>
-    <?php
-    }
+    <?php }
 }
-?>

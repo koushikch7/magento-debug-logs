@@ -8,6 +8,10 @@ use Magento\Framework\Exception\FileSystemException;
 use Magento\Framework\Filesystem\DirectoryList;
 use Magento\Framework\Filesystem\Driver\File as FileDriver;
 
+/**
+ * Class Index
+ * @package CHK\AdminDebugLogs\Block\Adminhtml\Index
+ */
 class Index extends Container
 {
     /**
@@ -20,6 +24,14 @@ class Index extends Container
      */
     private $fileDriver;
 
+    /**
+     * Index constructor.
+     *
+     * @param DirectoryList $directoryList
+     * @param FileDriver $fileDriver
+     * @param Context $context
+     * @param array $data
+     */
     public function __construct(
         DirectoryList $directoryList,
         FileDriver $fileDriver,
