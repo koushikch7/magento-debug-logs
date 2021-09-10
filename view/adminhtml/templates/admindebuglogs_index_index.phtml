@@ -1,10 +1,9 @@
 <?php
 $logDirectory = $block->getLogPath();
-$filesArray = scandir($logDirectory);
-foreach ($filesArray as $file) {
+foreach (scandir($logDirectory) as $file) {
     if (pathinfo($file, PATHINFO_EXTENSION) == 'log') {
         $filePath = $logDirectory . '/' . $file; ?>
         <h2 class="log-header"><?= $file ?></h2>
-        <p class="log-content"><?= $block->getFileContent($filePath) ?></p>
+        <p class="log-content"><?php print_r($block->getFileContent($filePath)); ?></p>
     <?php }
 }

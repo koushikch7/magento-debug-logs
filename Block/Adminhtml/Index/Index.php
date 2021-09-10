@@ -2,11 +2,13 @@
 
 namespace CHK\AdminDebugLogs\Block\Adminhtml\Index;
 
+use LimitIterator;
 use Magento\Backend\Block\Widget\Container;
 use Magento\Backend\Block\Widget\Context;
 use Magento\Framework\Exception\FileSystemException;
 use Magento\Framework\Filesystem\DirectoryList;
 use Magento\Framework\Filesystem\Driver\File as FileDriver;
+use SplFileObject;
 
 /**
  * Class Index
@@ -60,13 +62,50 @@ class Index extends Container
      * @param $path
      * @return string|void
      */
-    public function getFileContent($path)
+    public function getFileContent($filePath)
     {
         try {
-            return $this->fileDriver->fileGetContents($path);
+            if ($this->getFileSizeInKb($filePath) > 300) {
+                return $this->readLastLines($filePath);
+            } else {
+                return $this->fileDriver->fileGetContents($filePath);
+            }
         } catch (FileSystemException $e) {
             $this->_logger->error('Failed to get the file content ' . $e);
         }
         return;
+    }
+
+    /**
+     * @param $filename
+     * @param int $num
+     * @param false $reverse
+     * @return string
+     */
+    public function readLastLines($filename, $num = 300, $reverse = false)
+    {
+        $file = new SplFileObject($filename, 'r');
+        $file->seek(PHP_INT_MAX);
+        $last_line = $file->key();
+        $lines = new LimitIterator($file, $last_line - $num, $last_line);
+        $arr = iterator_to_array($lines);
+        if($reverse) $arr = array_reverse($arr);
+        return implode('',$arr);
+    }
+
+    /**
+     * get File size in KB
+     *
+     * @param $filePath
+     * @return int
+     */
+    public function getFileSizeInKb($filePath): int
+    {
+        $size = filesize($filePath);
+        if($size < 1024) {
+            return 0;
+        } else {
+            return round($size / 1024);
+        }
     }
 }
